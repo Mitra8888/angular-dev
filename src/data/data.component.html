@@ -1,0 +1,32 @@
+<button routerLink="/home">Home</button>
+<div>
+    <h5>Filtriraj podatke</h5>
+    <input type="text"
+    placeholder="Unesi podatke"
+    [(ngModel)]="searchTerm"
+    (input)="filterData()">
+</div>
+<hr>
+<form (ngSubmit)="onUserAdd()">
+    <labeL>
+        Ime:
+        <input type="text"[(ngModel)]="newuser.name" name="name" required/>
+    </labeL>
+    <labeL>
+        Email:
+        <input type="text"[(ngModel)]="newuser.email" name="email" required/>
+    </labeL>
+    <button type="submit">Dodaj Korisnika</button>
+</form>
+<table style="background-color: red; padding-top:20px">
+    <th>ID</th>
+    <th>Name</th>
+    <th>Email</th>
+    <tr *ngFor="let user of userFilter">
+        <td>{{user.id}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.email}}</td>
+        <td><button mat-button (click)="editUser(user)">Izmeni Korisnika</button></td>
+        <td><button mat-button (click)="deleteUser(user.id)">Obrisi Korisnika</button></td>
+    </tr>
+</table>
